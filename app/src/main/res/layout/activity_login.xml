@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layoutActivity.LoginActivity"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/textview">
+
+
+    <EditText
+
+        android:id="@+id/txt_Login_user"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textview"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/prompt_email"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/txt_Login_pass"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textview"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/prompt_password"
+        />
+
+    <CheckBox
+        android:id="@+id/cb_Login_remember"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Lưu tài khoản"
+        />
+    <Button
+        android:id="@+id/btn_Login_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/colorPrimary"
+        android:text="Đăng nhập"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        />
+</LinearLayout>

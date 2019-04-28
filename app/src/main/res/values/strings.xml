@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Truyencuatui</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Truyện của tui</string>
+    <string name="nav_header_subtitle">Xem free không mất phí</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_login">Đăng nhập</string>
+    <string name="menu_register">Đăng ký</string>
+    <string name="menu_main">Trang chủ</string>
+    <string name="menu_dowloadBook">Truyện đã tải</string>
+    <string name="menu_clendarBook">Lịch ra truyện</string>
+    <string name="menu_categoryBook">Danh sách truyện</string>
+    <string name="menu_newBook">Truyện mới</string>
+    <string name="menu_hotBook">Truyện hot</string>
+    <string name="menu_fullBook">Truyện hoàn thành</string>
+    <string name="menu_viewBook">Truyện đọc nhiều</string>
+    <string name="menu_13">13</string>
+    <string name="menu_16">16</string>
+    <string name="menu_18">18+</string>
+    <string name="menu_tienhiep">Tiên hiệp</string>
+    <string name="menu_kiemhiep">Kiếm hiệp</string>
+    <string name="menu_ngontinh">Ngôn tình</string>
+    <string name="menu_dothi">Đô thị</string>
+    <string name="menu_quantruong">Quan trường</string>
+    <string name="menu_vongdu">Võng du</string>
+    <string name="menu_khoahuyen">Khoa huyễn</string>
+    <string name="menu_huyen">Huyền huyễn</string>
+    <string name="menu_digioi">Dị giới</string>
+    <string name="menu_lichsu">Lịch sử</string>
+    <string name="menu_tay">Phương Tây</string>
+    <string name="menu_history">Lịch sử</string>
+    <string name="title_activity_login">Đăng nhập</string>
+    <string name="prompt_email">Nhập Email</string>
+    <string name="prompt_password">Nhập mật khẩu</string>
+    <string name="action_sign_in">Đăng nhập</string>
+    <string name="action_re_pass">Nhập lại mật khẩu</string>
+    <string name="title_activity_book">BookActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="menu_itemsearch">Tìm kiếm</string>
+    <string name="menu_item_notify">Thông báo</string>
+</resources>

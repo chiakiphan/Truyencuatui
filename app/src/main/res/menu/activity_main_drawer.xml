@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="@string/menu_login" />
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/ic_person_add_black_24dp"
+            android:title="@string/menu_register" />
+
+    </group>
+
+    <item android:title="Truyện của tui">
+        <menu>
+            <item
+                android:id="@+id/nav_main"
+                android:icon="@drawable/ic_home_black_24dp"
+                android:title= "@string/menu_main" />
+            <item
+                android:id="@+id/nav_dowloaded"
+                android:icon="@drawable/ic_cloud_download_black_24dp"
+                android:title= "@string/menu_dowloadBook" />
+            <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_date_range_black_24dp"
+            android:title= "@string/menu_clendarBook" />
+            <item
+                android:id="@+id/nav_history"
+                android:icon="@drawable/ic_history_black_24dp"
+                android:title= "@string/menu_history" />
+            <item
+                android:id="@+id/nav_categoryBook"
+                android:icon="@drawable/ic_book_black_24dp"
+                android:title= "@string/menu_categoryBook" />
+        </menu>
+    </item>
+    <item android:title="Danh mục">
+        <menu>
+            <item
+                android:id="@+id/nav_hotBook"
+                android:icon="@drawable/ic_star_black_24dp"
+                android:title= "@string/menu_hotBook" />
+            <item
+                android:id="@+id/nav_viewBook"
+                android:icon="@drawable/ic_plus_one_black_24dp"
+                android:title= "@string/menu_viewBook" />
+            <item
+                android:id="@+id/nav_newBook"
+                android:icon="@drawable/ic_fiber_new_black_24dp"
+                android:title= "@string/menu_newBook" />
+            <item
+                android:id="@+id/nav_fullBook"
+                android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+                android:title= "@string/menu_fullBook" />
+
+        </menu>
+    </item>
+    <item android:title="Thể loại">
+        <menu>
+            <item
+                android:id="@+id/nav_tienhiep"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_tienhiep" />
+            <item
+                android:id="@+id/nav_kiem"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_kiemhiep" />
+            <item
+                android:id="@+id/nav_ngon"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_ngontinh" />
+            <item
+                android:id="@+id/nav_quantruong"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_quantruong" />
+            <item
+                android:id="@+id/nav_vongdu"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_vongdu" />
+            <item
+                android:id="@+id/nav_huyen"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_huyen" />
+            <item
+                android:id="@+id/nav_digioi"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_digioi" />
+            <item
+                android:id="@+id/nav_lichsu"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_lichsu" />
+            <item
+                android:id="@+id/nav_tay"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_tay" />
+            <item
+                android:id="@+id/nav_dothi"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_dothi" />
+            <item
+                android:id="@+id/nav_khoa"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_khoahuyen" />
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCF7F8"
+    tools:context=".layoutActivity.RegisterActivity"
+    android:orientation="vertical"
+    android:layout_marginTop="16dp">
+
+
+
+    <EditText
+        android:id="@+id/txt_Register_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textview"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/prompt_email"
+        android:inputType="text"
+         />
+
+    <EditText
+        android:id="@+id/txt_Register_repass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textview"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+
+        android:ems="10"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+        />
+
+    <EditText
+        android:id="@+id/txt_Register_pass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textview"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:hint="@string/action_re_pass"
+        android:inputType="textPassword"
+         />
+    <Button
+        android:id="@+id/btn_Register_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/colorPrimary"
+        android:text="Đăng ký"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        />
+</LinearLayout>
