@@ -1,43 +1,46 @@
-package com.example.truyencuatui.layoutActivity;
+package com.example.truyencuatui.activity.read;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ToolbarWidgetWrapper;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toolbar;
 
 import com.example.truyencuatui.R;
-import com.example.truyencuatui.ui.main.SectionsPagerAdapter;
+import com.example.truyencuatui.fragment.book_page.Fragment_Description;
+import com.example.truyencuatui.fragment.main_page.Fragment_Newbook;
+import com.example.truyencuatui.adapter.PagerAdapter;
 
 public class BookActivity extends AppCompatActivity{
-    public static int[] resourceIds = {
-            R.layout.fragment_bookdetail
-            ,R.layout.fragment_listbook
-            ,R.layout.fragment_review
-    };
+    public static Bundle bundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
+
+        FragmentManager manager = getSupportFragmentManager();
+        PagerAdapter adapter = new PagerAdapter(manager);
+        viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+        tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+        Intent intent = getIntent();
+        bundle = intent.getBundleExtra(Fragment_Newbook.BUNDLE);
+
         android.support.v7.widget.Toolbar t =  findViewById(R.id.toolbar_book);
         setSupportActionBar(t);
+        getSupportActionBar().setTitle(bundle.getString(Fragment_Newbook.TITLE));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
     }
+
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

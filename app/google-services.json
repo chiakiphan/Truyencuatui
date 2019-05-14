@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "731893387028",
+    "firebase_url": "https://truyencuatui-18708.firebaseio.com",
+    "project_id": "truyencuatui-18708",
+    "storage_bucket": "truyencuatui-18708.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731893387028:android:c5a7df01381f7407",
+        "android_client_info": {
+          "package_name": "com.example.truyencuatui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731893387028-4kcl40u4mcuabuhunbkisl7t24vkjocr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.truyencuatui",
+            "certificate_hash": "2c9bb4da80743f42f41293e48435524b558bb2eb"
+          }
+        },
+        {
+          "client_id": "731893387028-4a90fgt3acq8o249lua6h1ujihabf4rv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrh1_kNt2GE1U24XtSza8eXGpI3eVx9yk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731893387028-4a90fgt3acq8o249lua6h1ujihabf4rv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

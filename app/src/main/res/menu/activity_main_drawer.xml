@@ -18,17 +18,10 @@
     <item android:title="Truyện của tui">
         <menu>
             <item
-                android:id="@+id/nav_main"
-                android:icon="@drawable/ic_home_black_24dp"
-                android:title= "@string/menu_main" />
-            <item
                 android:id="@+id/nav_dowloaded"
                 android:icon="@drawable/ic_cloud_download_black_24dp"
                 android:title= "@string/menu_dowloadBook" />
-            <item
-            android:id="@+id/nav_calendar"
-            android:icon="@drawable/ic_date_range_black_24dp"
-            android:title= "@string/menu_clendarBook" />
+
             <item
                 android:id="@+id/nav_history"
                 android:icon="@drawable/ic_history_black_24dp"
@@ -62,6 +55,14 @@
     </item>
     <item android:title="Thể loại">
         <menu>
+            <item
+                android:id="@+id/nav_13"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_13" />
+            <item
+                android:id="@+id/nav_18"
+                android:icon="@drawable/ic_arrow_forward_black_24dp"
+                android:title= "@string/menu_18" />
             <item
                 android:id="@+id/nav_tienhiep"
                 android:icon="@drawable/ic_arrow_forward_black_24dp"

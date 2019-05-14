@@ -1,14 +1,18 @@
-package com.example.truyencuatui;
+package com.example.truyencuatui.activity;
 
+import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.SystemClock;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
+
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -16,50 +20,94 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 
-import com.example.truyencuatui.layoutActivity.BookActivity;
-import com.example.truyencuatui.layoutActivity.CategoryActivity;
-import com.example.truyencuatui.layoutActivity.HistoryActivity;
-import com.example.truyencuatui.layoutActivity.LoginActivity;
-import com.example.truyencuatui.layoutActivity.RegisterActivity;
-import com.example.truyencuatui.layoutActivity.ViewBookActivity;
-import com.example.truyencuatui.ui.mainpage.SectionsMainPagerAdapter;
+import com.example.truyencuatui.R;
+import com.example.truyencuatui.activity.read.BookActivity;
+import com.example.truyencuatui.activity.read.ReadActivity;
+import com.example.truyencuatui.activity.task.MyAsync;
+import com.example.truyencuatui.activity.user.LoginActivity;
+import com.example.truyencuatui.activity.user.RegisterActivity;
+import com.example.truyencuatui.adapter.BookAdapter;
+import com.example.truyencuatui.adapter.MainPageAdapter;
+import com.example.truyencuatui.model.Book;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static int[] resourceIds = {
-            R.layout.fragment_newbook
-            ,R.layout.fragment_hotbook
-            ,R.layout.fragment_followbook
-    };
+
+    public static String TITLE="title",DESCRIPTION="descript",BOOKID="idbook",IMG="img",AUTHOR="author",TRANS="team",STATUS="status";
+    public static String KIND="kind",LINK="link";
+    public static ArrayList<Book> listB ;
+    private BookAdapter bookAdapter;
+    public static String BUNDLE="Bundle";
+    MyAsync myAsyncTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                        MainActivity.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(MainActivity.this);
 
-        SectionsMainPagerAdapter sectionsPagerAdapter = new SectionsMainPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_main_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.maintab);
+        FragmentManager manager = getSupportFragmentManager();
+        MainPageAdapter adapter = new MainPageAdapter(manager);
+        viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+        tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+        getAllBook();
+
+    }
+
+    private void getAllBook() {
+        listB = new ArrayList<>();
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("book");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Parse dataSnapshot
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Book book = ds.getValue(Book.class);
+                    String key = ds.getKey();
+                    book.setIdBook(key);
+                    listB.add(book);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public static int subString(String test, String text){
+        String []s = test.split(",");
+        for(String k: s){
+            if(k.equals(text)) return 1;
+        }
+        return 0;
     }
 
     @Override
@@ -76,6 +124,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
@@ -86,7 +141,7 @@ public class MainActivity extends AppCompatActivity
 
                 return true;
             case R.id.about:
-
+                Toast.makeText(this,"Đăng nhập để sử dụng chức năng này",Toast.LENGTH_SHORT).show();
                 return true;
 
         }
@@ -106,18 +161,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_register) {
             intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_main) {
-            intent = new Intent(MainActivity.this, BookActivity.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_newBook) {
 
-
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_calendar) {
-
-
-            intent = new Intent(MainActivity.this, HistoryActivity.class);
+            intent.putExtra(TITLE,"MỚI CẬP NHẬP");
             startActivity(intent);
         } else if (id == R.id.nav_categoryBook) {
 
@@ -128,76 +176,97 @@ public class MainActivity extends AppCompatActivity
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"DỊ GIỚI");
             startActivity(intent);
         } else if (id == R.id.nav_dothi) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"ĐÔ THỊ");
             startActivity(intent);
         } else if (id == R.id.nav_dowloaded) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"TRUYỆN ĐÃ TẢI");
             startActivity(intent);
         }else if (id == R.id.nav_fullBook) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"TRUYỆN HOÀN THÀNH");
             startActivity(intent);
-        } else if (id == R.id.nav_history) {
+        } else if (id == R.id.nav_13) {
+
+
+            intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"TRUYỆN THIẾU NHI");
+            startActivity(intent);
+        }else if (id == R.id.nav_18) {
+
+
+            intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"TRUYỆN NGƯỜI LỚN");
+            startActivity(intent);
+        }else if (id == R.id.nav_history) {
 
 
             intent = new Intent(MainActivity.this, HistoryActivity.class);
+            intent.putExtra(TITLE,"LỊCH SỬ ĐỌC");
             startActivity(intent);
         } else if (id == R.id.nav_hotBook) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"TRUYỆN HOT");
             startActivity(intent);
         }else if (id == R.id.nav_huyen) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"HUYỀN HUYỄN");
             startActivity(intent);
         } else if (id == R.id.nav_khoa) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"KHOA HUYỄN");
             startActivity(intent);
         } else if (id == R.id.nav_kiem) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"KIẾM HIỆP");
             startActivity(intent);
         }else if (id == R.id.nav_lichsu) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"LỊCH SỬ");
             startActivity(intent);
         } else if (id == R.id.nav_quantruong) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"QUAN TRƯỜNG");
             startActivity(intent);
         } else if (id == R.id.nav_tay) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"PHƯƠNG TÂY");
             startActivity(intent);
         }else if (id == R.id.nav_tienhiep) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"TIÊN HIỆP");
             startActivity(intent);
         } else if (id == R.id.nav_ngon) {
 
 
             intent = new Intent(MainActivity.this, ViewBookActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_newBook) {
-
-
-            intent = new Intent(MainActivity.this, ViewBookActivity.class);
+            intent.putExtra(TITLE,"NGÔN TÌNH");
             startActivity(intent);
         }
 

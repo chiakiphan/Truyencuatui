@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.truyencuatui">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,29 +13,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".layoutActivity.HistoryActivity"></activity>
-        <activity android:name=".layoutActivity.ViewBookActivity" />
+        <activity android:name=".activity.read.ReadActivity"></activity>
         <activity
-            android:name=".layoutActivity.BookActivity"
+            android:name=".activity.HistoryActivity"
+            android:label="TRUYỆN ĐÃ XEM" />
+        <activity android:name=".activity.ViewBookActivity" />
+        <activity
+            android:name=".activity.read.BookActivity"
             android:label="@string/title_activity_book"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".layoutActivity.CategoryActivity" />
         <activity
-            android:name=".layoutActivity.LoginActivity"
+            android:name=".activity.CategoryActivity"
+            android:label="DANH SÁCH TRUYỆN" />
+        <activity
+            android:name=".activity.user.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".layoutActivity.RegisterActivity"
+            android:name=".activity.user.RegisterActivity"
             android:label="Đăng ký" />
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:resource="@xml/searchable"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
+
     </application>
 
 </manifest>
